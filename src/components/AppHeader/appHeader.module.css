@@ -1,0 +1,46 @@
+.header { 
+    display: flex;
+    height: 88px;
+    background-color: #1C1C21;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 320px;
+}
+
+.headerContent {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content {
+    width: 33%;
+}
+
+
+.navList {
+    display: flex;
+    list-style-type: none;
+    gap: 8px;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.navItem {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 20px;
+}
+
+.personalAccount {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 20px;
+    justify-content: flex-end;
+}
+
