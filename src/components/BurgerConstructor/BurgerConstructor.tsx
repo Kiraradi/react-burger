@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import IBurgerIngredients from './IBurgerConstructor.types'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
+import BurgerIngredientCard from '../BurgerIngredient/BurgerIngredient';
 
 import styles from './burgerConstructor.module.css';
 
@@ -21,6 +22,7 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
             break;
     }
   },[ingredientType])
+  console.log(burgerIngredients)
 
   return (
     <div>
@@ -35,18 +37,44 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
           Начинки
         </Tab>
       </div>
-      <h2 className={styles.title}>{title}</h2>
+      
       <ul>
-        {
-          burgerIngredients.filter(ingredient => ingredient.type === ingredientType).map(ingredient => {
-            if (ingredient) {
-              return (
-                <div>{ingredient.name}</div>
-              )
-              return<></>
-            }
-          })
-        }
+        <li>
+          <h2 className={styles.title}>Булки</h2>
+          {
+            burgerIngredients.filter(ingredient => ingredient.type === 'bun').map(ingredient => {
+              if (ingredient) {
+                return (
+                  <BurgerIngredientCard burgerIngredient ={ingredient}/>
+                )
+              }
+            })
+          }
+        </li>
+        <li>
+          <h2 className={styles.title}>Соусы</h2>
+          {
+            burgerIngredients.filter(ingredient => ingredient.type === 'sauce').map(ingredient => {
+              if (ingredient) {
+                return (
+                  <BurgerIngredientCard burgerIngredient ={ingredient}/>
+                )
+              }
+            })
+          }
+        </li>
+        <li>
+          <h2 className={styles.title}>Начинки</h2>
+          {
+            burgerIngredients.filter(ingredient => ingredient.type === 'main').map(ingredient => {
+              if (ingredient) {
+                return (
+                  <BurgerIngredientCard burgerIngredient ={ingredient}/>
+                )
+              }
+            })
+          }
+        </li>
       </ul>
     </div>
   )
