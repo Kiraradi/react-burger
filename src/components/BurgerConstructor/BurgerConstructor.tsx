@@ -22,10 +22,9 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
             break;
     }
   },[ingredientType])
-  console.log(burgerIngredients)
 
   return (
-    <div>
+    <div className={styles.BurgerConstructor}>
       <div className={styles.menu}>
         <Tab value="bun" active={ingredientType === 'bun'} onClick={setingredientType}>
           Булки
@@ -37,45 +36,57 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
           Начинки
         </Tab>
       </div>
+
+      <div className={styles.listWrapper}>
+        <ul className={styles.list}>
+          <li className={styles.category}>
+            <h2 className={styles.title}>Булки</h2>
+            <div className={styles.burgerIngredients}>
+              {
+                burgerIngredients.filter(ingredient => ingredient.type === 'bun').map(ingredient => {
+                  if (ingredient) {
+                    return (
+                      <BurgerIngredientCard burgerIngredient ={ingredient}/>
+                    )
+                  }
+                })
+              }
+            </div>
+          </li>
+          <li className={styles.category}>
+            <h2 className={styles.title}>Соусы</h2>
+            <div className={styles.burgerIngredients}>
+              {
+                burgerIngredients.filter(ingredient => ingredient.type === 'sauce').map(ingredient => {
+                  if (ingredient) {
+                    return (
+                      <BurgerIngredientCard burgerIngredient ={ingredient}/>
+                    )
+                  }
+                })
+              }
+            </div>
+
+          </li>
+          <li className={styles.category}>
+            <h2 className={styles.title}>Начинки</h2>
+            <div className={styles.burgerIngredients}>
+              {
+                burgerIngredients.filter(ingredient => ingredient.type === 'main').map(ingredient => {
+                  if (ingredient) {
+                    return (
+                      <BurgerIngredientCard burgerIngredient ={ingredient}/>
+                    )
+                  }
+                })
+              }
+            </div>
+
+          </li>
+        </ul>
+      </div>
       
-      <ul>
-        <li>
-          <h2 className={styles.title}>Булки</h2>
-          {
-            burgerIngredients.filter(ingredient => ingredient.type === 'bun').map(ingredient => {
-              if (ingredient) {
-                return (
-                  <BurgerIngredientCard burgerIngredient ={ingredient}/>
-                )
-              }
-            })
-          }
-        </li>
-        <li>
-          <h2 className={styles.title}>Соусы</h2>
-          {
-            burgerIngredients.filter(ingredient => ingredient.type === 'sauce').map(ingredient => {
-              if (ingredient) {
-                return (
-                  <BurgerIngredientCard burgerIngredient ={ingredient}/>
-                )
-              }
-            })
-          }
-        </li>
-        <li>
-          <h2 className={styles.title}>Начинки</h2>
-          {
-            burgerIngredients.filter(ingredient => ingredient.type === 'main').map(ingredient => {
-              if (ingredient) {
-                return (
-                  <BurgerIngredientCard burgerIngredient ={ingredient}/>
-                )
-              }
-            })
-          }
-        </li>
-      </ul>
+
     </div>
   )
 }

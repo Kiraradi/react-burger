@@ -14,7 +14,7 @@ export default function StellarBurgers() {
 
         <div className={styles.columns}>
             <BurgerConstructor burgerIngredients={dataBurgerComponents}/>
-            <BurgerIngredients/>
+            <BurgerIngredients burgerIngredients={dataBurgerComponents}/>
         </div>
     </main>
   )

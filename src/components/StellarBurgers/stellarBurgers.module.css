@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 340px;
+    padding: 35px 160px;
     justify-content: flex-start;
     flex-direction: column;
 }
@@ -17,5 +17,5 @@
 .columns {
    width: 100%; 
    display: flex;
-   justify-content: space-between;
+   gap: 16px;
 }
