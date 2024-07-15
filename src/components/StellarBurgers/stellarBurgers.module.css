@@ -17,5 +17,5 @@
 .columns {
    width: 100%; 
    display: flex;
-   gap: 16px;
+   gap: 40px;
 }

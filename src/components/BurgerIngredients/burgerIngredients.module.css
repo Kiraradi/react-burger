@@ -5,7 +5,15 @@
     margin-top: 40px;
     width: 50%;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.fullList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
 }
 
 .list {
@@ -13,7 +21,7 @@
     flex-direction: column;
     gap: 10px;
     overflow: auto;
-    height: 50vh;
+    height: 40vh;
     padding-right: 15px;
 }
 
@@ -21,4 +29,14 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.price {
+    display: flex;
+    width: 100%;
+    max-width: 536px;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: flex-end;
 }
