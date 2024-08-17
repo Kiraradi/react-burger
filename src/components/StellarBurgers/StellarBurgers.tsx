@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styles from './stellarBurgers.module.css';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
-import { dataBurgerComponents } from '../../utils/data';
+import { getIngredientsFromSServer } from '../../Services/Api';
+import { IBurgerIngredient } from '../BurgerConstructor/IBurgerConstructor.types';
 
-export default function StellarBurgers() {
+const StellarBurgers = () => {
+  const [ingredients, setIngredients] = useState<IBurgerIngredient[] | null>([])
+
+  useEffect(() => {
+    const getIngredients = async () => {
+      const ingredients = await getIngredientsFromSServer();
+      setIngredients(ingredients);
+    };
+
+    getIngredients();
+    
+  }, [])
   return (
     <main className={styles.main}>
         <div className={styles.title}>
@@ -13,9 +25,11 @@ export default function StellarBurgers() {
         </div>
 
         <div className={styles.columns}>
-            <BurgerConstructor burgerIngredients={dataBurgerComponents}/>
-            <BurgerIngredients burgerIngredients={dataBurgerComponents}/>
+            { ingredients && <BurgerConstructor burgerIngredients={ingredients}/>}
+            { ingredients && <BurgerIngredients burgerIngredients={ingredients}/>}
         </div>
     </main>
   )
 }
+
+export default StellarBurgers

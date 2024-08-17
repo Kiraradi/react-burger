@@ -1,15 +1,21 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import IBurgerIngredients, {IBurgerIngredient} from '../BurgerConstructor/IBurgerConstructor.types'
 import { Button, ConstructorElement, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import Modal from '../UI/Modal/Modal';
+import OrderDetails from '../OrderDetails/OrderDetails';
 
-import s from './burgerIngredients.module.css'
+import s from './burgerIngredients.module.css';
 
 const BurgerIngredients:React.FC<IBurgerIngredients> = ({burgerIngredients}) => {
   const [lockedIngredients, setLockedIngredients] = useState<IBurgerIngredient[]>([]);
   const [openedIngredient, setOpenedIngredient] = useState<IBurgerIngredient[]>([]);
   const [fullPrice, setFullPrice] = useState<number>(0);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
   useEffect(() => {
     const price = burgerIngredients.reduce((acc, ing) => acc + ing.price, 0);
     setFullPrice(price)
@@ -25,6 +31,7 @@ const BurgerIngredients:React.FC<IBurgerIngredients> = ({burgerIngredients}) => 
     })
   }, [burgerIngredients])
 
+  
   return (
     <div className={s.wrapper}>
       <div className={s.fullList}>
@@ -74,10 +81,22 @@ const BurgerIngredients:React.FC<IBurgerIngredients> = ({burgerIngredients}) => 
       <div className={s.price}>
         <p className='text text_type_main-large'>{fullPrice}</p>
         <CurrencyIcon type="primary" />
-        <Button htmlType="button" type="primary" size="medium">
+        <Button 
+          htmlType="button" 
+          type="primary" 
+          size="medium"
+          onClick={() => {setIsOpen(true)}}
+        >
           Оформить заказ
         </Button>
+
       </div>
+      {isOpen && <Modal
+        title=''
+        onClose={closeModal}
+       >
+        <OrderDetails/>
+        </Modal>}
     </div>
   )
 }

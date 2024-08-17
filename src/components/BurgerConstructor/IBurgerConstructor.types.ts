@@ -1,6 +1,5 @@
 export default interface IBurgerIngredients {
-    burgerIngredients: IBurgerIngredient[]
-}
+    burgerIngredients: IBurgerIngredient[] }
 
 export interface IBurgerIngredient {
     _id: string

@@ -43,7 +43,7 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
             <h2 className={styles.title}>Булки</h2>
             <div className={styles.burgerIngredients}>
               {
-                burgerIngredients.filter(ingredient => ingredient.type === 'bun').map(ingredient => {
+                burgerIngredients?.filter(ingredient => ingredient.type === 'bun').map(ingredient => {
                   if (ingredient) {
                     return (
                       <BurgerIngredientCard burgerIngredient ={ingredient}/>
@@ -57,7 +57,7 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
             <h2 className={styles.title}>Соусы</h2>
             <div className={styles.burgerIngredients}>
               {
-                burgerIngredients.filter(ingredient => ingredient.type === 'sauce').map(ingredient => {
+                burgerIngredients?.filter(ingredient => ingredient.type === 'sauce').map(ingredient => {
                   if (ingredient) {
                     return (
                       <BurgerIngredientCard burgerIngredient ={ingredient}/>
@@ -72,7 +72,7 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
             <h2 className={styles.title}>Начинки</h2>
             <div className={styles.burgerIngredients}>
               {
-                burgerIngredients.filter(ingredient => ingredient.type === 'main').map(ingredient => {
+                burgerIngredients?.filter(ingredient => ingredient.type === 'main').map(ingredient => {
                   if (ingredient) {
                     return (
                       <BurgerIngredientCard burgerIngredient ={ingredient}/>
@@ -86,7 +86,6 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
         </ul>
       </div>
       
-
     </div>
   )
 }
