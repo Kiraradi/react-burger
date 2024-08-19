@@ -1,0 +1,39 @@
+.BurgerConstructor {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 40px;
+}
+
+.listWrapper {
+    max-height: 70vh;
+    box-sizing: border-box;
+    overflow: auto;
+    min-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.list{
+   list-style-type: none; 
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+.ingredients {
+    list-style-type: none;
+}
+.burgerIngredients {
+    display: flex;
+    flex-wrap: wrap;
+}
