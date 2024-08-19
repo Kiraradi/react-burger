@@ -5,21 +5,19 @@
     align-items: center;
 }
 
-.menu {
-    display: flex;
-}
-
 .title {
     display: flex;
     justify-content: flex-start;
     margin-top: 40px;
 }
 
-.listWrapper{
-    height: 70vh;
+.listWrapper {
+    max-height: 70vh;
     box-sizing: border-box;
     overflow: auto;
     min-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .list{

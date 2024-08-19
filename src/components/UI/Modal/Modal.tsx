@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import { iModal } from "./Modal.types";
+import { IModal } from "./Modal.types";
 
 import s from './modal.module.css'
 
@@ -9,7 +9,7 @@ import ReactDOM from "react-dom";
 
 const modalRoot = document.getElementById("react-modals");
 
-const Modal:FC<iModal> = ({title, onClose, children}) => {
+const Modal:FC<IModal> = ({title, onClose, children}) => {
     return ReactDOM.createPortal(
         (<div className={s.ModalOverlay}>
             <div className={s.Modal}>

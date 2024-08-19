@@ -1,55 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import IBurgerIngredients from './IBurgerConstructor.types'
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
+import React, { useCallback, useMemo, useState } from 'react'
+import IBurgerIngredients, { IBurgerIngredient } from './IBurgerConstructor.types'
 import BurgerIngredientCard from '../BurgerIngredient/BurgerIngredient';
+import Menu from '../Menu/Menu'; 
 
 import styles from './burgerConstructor.module.css';
 
 const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) => {
-  const [ingredientType, setingredientType] = useState('bun');
-  const [title, setTitle] = useState('Булки');
+  const [ingredientType, setIngredientType] = useState<string>('bun');
 
-  useEffect(()=> {
-    switch(ingredientType){
-      case 'bun':
-        setTitle('Булки')
-        break;
-        case 'sauce':
-          setTitle('Соусы')
-          break;
-          case 'main':
-            setTitle('Начинки')
-            break;
+  const filterIngredients = useCallback((cotegory: string, ingredients: IBurgerIngredient[]):IBurgerIngredient[] | null => {
+    const sortedIngredients = ingredients.filter(ingredient => ingredient.type === cotegory);
+    
+    if (sortedIngredients.length > 0) {
+      return sortedIngredients;
     }
-  },[ingredientType])
+    return null;
+  }, [])
+
+  const buns = useMemo(() => filterIngredients('bun', burgerIngredients),[burgerIngredients.length]);
+  const sauces = useMemo(() => filterIngredients('sauce', burgerIngredients),[burgerIngredients.length]);
+  const main = useMemo(() => filterIngredients('main', burgerIngredients),[burgerIngredients.length]);
 
   return (
     <div className={styles.BurgerConstructor}>
-      <div className={styles.menu}>
-        <Tab value="bun" active={ingredientType === 'bun'} onClick={setingredientType}>
-          Булки
-        </Tab>
-        <Tab value="sauce" active={ingredientType === 'sauce'} onClick={setingredientType}>
-          Соусы
-        </Tab>
-        <Tab value="main" active={ingredientType === 'main'} onClick={setingredientType}>
-          Начинки
-        </Tab>
-      </div>
-
-      <div className={styles.listWrapper}>
+      <Menu ingredientType={ingredientType} setIngredientType={setIngredientType}/>
+      <div className={`${styles.listWrapper} custom-scroll`}>
         <ul className={styles.list}>
           <li className={styles.category}>
             <h2 className={styles.title}>Булки</h2>
             <div className={styles.burgerIngredients}>
               {
-                burgerIngredients?.filter(ingredient => ingredient.type === 'bun').map(ingredient => {
-                  if (ingredient) {
-                    return (
-                      <BurgerIngredientCard burgerIngredient ={ingredient}/>
-                    )
-                  }
-                })
+                buns && 
+                  buns.map(ingredient => <BurgerIngredientCard burgerIngredient ={ingredient}/>)                
               }
             </div>
           </li>
@@ -57,13 +39,8 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
             <h2 className={styles.title}>Соусы</h2>
             <div className={styles.burgerIngredients}>
               {
-                burgerIngredients?.filter(ingredient => ingredient.type === 'sauce').map(ingredient => {
-                  if (ingredient) {
-                    return (
-                      <BurgerIngredientCard burgerIngredient ={ingredient}/>
-                    )
-                  }
-                })
+                sauces && 
+                  sauces.map(ingredient => <BurgerIngredientCard burgerIngredient ={ingredient}/>)  
               }
             </div>
 
@@ -72,16 +49,10 @@ const BurgerConstructor: React.FC<IBurgerIngredients> = ({burgerIngredients}) =>
             <h2 className={styles.title}>Начинки</h2>
             <div className={styles.burgerIngredients}>
               {
-                burgerIngredients?.filter(ingredient => ingredient.type === 'main').map(ingredient => {
-                  if (ingredient) {
-                    return (
-                      <BurgerIngredientCard burgerIngredient ={ingredient}/>
-                    )
-                  }
-                })
+                main && 
+                  main.map(ingredient => <BurgerIngredientCard burgerIngredient ={ingredient}/>) 
               }
             </div>
-
           </li>
         </ul>
       </div>

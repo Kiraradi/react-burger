@@ -54,7 +54,6 @@ const BurgerIngredients:React.FC<IBurgerIngredients> = ({burgerIngredients}) => 
                 <div className= {s.item}>
                 <DragIcon type="primary" />              
                 <ConstructorElement
-                        type={undefined}
                         isLocked= {false}
                         text={ing.name}
                         price={ing.price}
